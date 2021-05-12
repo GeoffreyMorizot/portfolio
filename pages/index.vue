@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <h1>{{ global.SiteName }}</h1>
+  <div class="container"> 
+    {{ global.siteName }}
+    {{ global.contactEmail }}
   </div>
 </template>
 
@@ -24,9 +25,9 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  h1{
-    color: red;
-  }
+
+  background: var(--bg);
+  
 }
 
 .title {

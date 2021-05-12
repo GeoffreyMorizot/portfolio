@@ -1,8 +1,28 @@
 <template>
   <div>
+     <div class="container"> 
+    {{ global.siteName }}
+    {{ global.contactEmail }}
+    {{ global.logo.url }}
+    
+    
+  </div>
+  <img :src="`http://localhost:1337${global.logo.url}`" alt="">
     <Nuxt />
   </div>
 </template>
+
+<script>
+import global from '~/apollo/queries/global.gql'
+export default {
+  apollo: {
+    global: {
+      prefetch: true,
+      query: global,
+    },
+  },
+}
+</script>
 
 <style>
 html {

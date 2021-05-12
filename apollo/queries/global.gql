@@ -1,6 +1,9 @@
 query GLOBAL{
   global
   {
-    SiteName 
+    siteName 
+    contactEmail
+    siteLanguage
+    logo {url}
   }
 }
