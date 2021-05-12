@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -24,6 +24,9 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  h1{
+    color: red;
+  }
 }
 
 .title {
