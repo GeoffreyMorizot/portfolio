@@ -1,0 +1,6 @@
+query PROJECT{
+  projects
+  {
+    Title
+  }
+}

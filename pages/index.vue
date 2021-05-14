@@ -1,33 +1,43 @@
 <template>
-  <div class="container"> 
+  <main class="main">
     {{ global.siteName }}
     {{ global.contactEmail }}
-  </div>
+    {{ projects[0].Title }}
+  </main>
 </template>
 
 <script>
 import global from '~/apollo/queries/global.gql'
+import projects from '~/apollo/queries/projects.gql'
+import Project from '~/components/Project'
 export default {
+  components: {
+        Project
+  },
   apollo: {
     global: {
       prefetch: true,
       query: global,
     },
-  },
+    projects: {
+      prefetch: true,
+      query: projects,
+    },
+  },  
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
+.main {
   margin: 0 auto;
-  min-height: 100vh;
+  
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-grow: 1;
 
-  background: var(--bg);
-  
+  background: var(--clr-cheese);
 }
 
 .title {
