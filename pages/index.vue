@@ -1,8 +1,9 @@
 <template>
-  <main class="main">
-    {{ global.siteName }}
-    {{ global.contactEmail }}
-    {{ projects[0].Title }}
+  <main class="main"> 
+    <Project></Project>
+    <Project></Project>
+    <Project></Project>
+
   </main>
 </template>
 
@@ -29,12 +30,8 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  margin: 0 auto;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+ 
+
   flex-grow: 1;
 
   background: var(--clr-cheese);
