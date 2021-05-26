@@ -1,11 +1,7 @@
-:root{
-    --bg: rgba(22,33,89,1);
-    --clr-light : rgba(255 254 247,1);
 
-    --clr-cheese: rgb(253,188,124);
-    --clr-klein-blue: rgb(4,25,161);
+@import './global/reset';
+@import './global/mixins';
+@import './global/variables';
+@import './global/base';
 
 
-    --site-margin: 5vw;
-
-}

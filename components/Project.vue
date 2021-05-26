@@ -1,15 +1,42 @@
 <template>
-  <div class="project-container">
-    <div class="project__img">
+  <article class="project-container">
+    <div class="project__wrapper">
+    <nuxt-link :to="`/project/${project.slug}`" class="project__img">
       <img
-        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80"
-        alt
-        srcset
+        width="720"
+        height="480"
+        loading="lazy"
+        :src='`${baseURL}${cover.url}`'
+        :alt="`${cover.alternativeText}`"
+        :srcset="`${baseURL}${formats.thumbnail.url} ${formats.thumbnail.width}w,
+                  ${baseURL}${formats.small.url} ${formats.small.width}w,
+                  ${baseURL}${formats.medium.url} ${formats.medium.width}w,
+                  ${baseURL}${formats.large.url} ${formats.large.width}w`"
+        sizes="50vw"          
       />
+    </nuxt-link>
     </div>
-      <h3 class="project__title">Ceci est un très tres trest tres tres long titre</h3>
-  </div>
+    <nuxt-link :to="`/project/${project.slug}`">
+      <h3 class="project__title">{{ project.title }}</h3>
+    </nuxt-link>
+  </article>
 </template>
+
+<script>
+export default {
+  props: {
+    project: Object,
+  },
+  data() {
+    const {cover, cover:{formats}} = this.project
+    return {
+      cover,
+      formats,
+      baseURL: this.$config.http.imageURL
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 :host {
@@ -27,8 +54,6 @@
   top: 50%;
   left: 50%;
   max-width: 30%;
-
-  font-size: 40px;
 }
 
   &:nth-child(odd) {
@@ -49,5 +74,13 @@
 .project__img {
   width: 50%;
   height: 100%;
+}
+
+.project__wrapper::after {
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--clr-klein-blue);
 }
 </style>

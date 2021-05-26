@@ -1,0 +1,18 @@
+query PROJECT($slug: String!){
+  projectBySlug(slug: $slug){
+    id
+    title
+    description
+    imagesCollection{
+          id
+      alternativeText
+      url
+      formats
+    }
+    categories{
+      title
+    }
+    slug
+    
+    }
+  }

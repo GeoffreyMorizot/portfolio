@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "*",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/style-resources": "^1.0.0",
     "core-js": "^3.9.1",
     "fibers": "^5.0.0",
     "graphql-tag": "^2.12.4",

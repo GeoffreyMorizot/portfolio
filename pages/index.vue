@@ -1,61 +1,52 @@
 <template>
-  <main class="main"> 
-    <Project></Project>
-    <Project></Project>
-    <Project></Project>
-
+  <main class="main">
+    <Hero :home="home" /> 
+      <div class="home__title-section">
+        <h4>{{ home.nameSection}}</h4>
+      </div>
+    <Project v-for="project in home.projects" :key="project.id" :project="project" />
   </main>
 </template>
 
 <script>
-import global from '~/apollo/queries/global.gql'
-import projects from '~/apollo/queries/projects.gql'
+import home from '~/apollo/queries/home.gql'
+
+import Hero from '~/components/Hero'
 import Project from '~/components/Project'
+
 export default {
   components: {
-        Project
+    Project,
+    Hero,
+  },
+  data() {
+    return {
+      home,
+    }
   },
   apollo: {
-    global: {
+    home: {
       prefetch: true,
-      query: global,
+      query: home,
     },
-    projects: {
-      prefetch: true,
-      query: projects,
-    },
-  },  
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .main {
- 
-
   flex-grow: 1;
-
-  background: var(--clr-cheese);
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+.home__title-section{
+  @include grid;
+  margin-bottom: 64px ;
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  h4 {
+    grid-column: 2 / span 2;
+    text-transform: capitalize;
+     border-top: 1px solid var(--clr-cheese);
+     border-bottom: 1px solid var(--clr-cheese);
+  }
 }
 </style>

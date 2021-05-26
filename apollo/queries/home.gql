@@ -1,0 +1,22 @@
+query HOME {
+  home {
+    __typename
+    id
+    title
+    job
+    bio
+    nameSection
+    projects {
+      __typename
+      id
+      title
+      slug
+      cover {
+        id
+        url
+        alternativeText
+        formats
+      }
+    }
+  }
+}

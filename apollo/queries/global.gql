@@ -4,6 +4,19 @@ query GLOBAL{
     siteName 
     contactEmail
     siteLanguage
-    logo {url}
+    socialNetworks{
+      id
+      title
+      url
+      icon{
+        url
+        alternativeText
+      }
+    }
+    logo {
+      url
+      alternativeText
+    }
   }
 }
+
