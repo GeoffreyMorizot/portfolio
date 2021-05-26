@@ -4,7 +4,7 @@ export default {
   target: 'static',
   publicRuntimeConfig: {
     http: {
-      imageURL: !process.env.STRAPI_URL || process.env.STRAPI_URL === 'http://localhost:1337' ? 'http://localhost:1337' : ''
+      imageURL: !process.env.NODE_ENV || process.env.NODE_ENV === 'dev' ? 'http://localhost:1337' : ''
     },
   },
   generate: {
