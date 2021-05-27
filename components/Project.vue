@@ -74,13 +74,12 @@ export default {
 .project__img {
   width: 50%;
   height: 100%;
+
+  img {
+    filter: grayscale(100%)
+  }
+  
 }
 
-.project__wrapper::after {
-  content:"";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: var(--clr-klein-blue);
-}
+
 </style>

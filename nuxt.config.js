@@ -4,11 +4,12 @@ export default {
   target: 'static',
   publicRuntimeConfig: {
     http: {
-      imageURL: !process.env.NODE_ENV || process.env.NODE_ENV === 'dev' ? 'http://localhost:1337' : ''
+      imageURL: process.env.API_URL === 'http://localhost:1337' ? 'http://localhost:1337' : '' 
     },
   },
   generate: {
     devtools: true,
+    fallback: true
   },
   router: {
     linkPrefetchedClass: 'lien-de-nuxt-prefetched'
@@ -43,7 +44,7 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500&display=swap'
       },
     ],
   },

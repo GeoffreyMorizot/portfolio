@@ -14,11 +14,9 @@
             :alt="`${global.logo.alternativeText}`"
           />
         </nuxt-link>
-        <nuxt-link class="nav__link" to="/about">ABOUT</nuxt-link>
       </nav>
     </header>
     <Nuxt />
-    <Footer :info="global" />
   </div>
 </template>
 
@@ -30,7 +28,6 @@ import global from '~/apollo/queries/global.gql'
 export default {
   components: {
      BgGrid,
-     Footer
   },
   data() {
     return {
@@ -45,45 +42,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-  
-
-  .nuxt-link-active{
-      text-decoration: underline;
-  }
-  
-
-
-.header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 70px;
-  flex-grow: 0;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 var(--site-margin) 0 var(--site-margin);
-  &__logo {
-    height: 100%;
-    width: auto;
-  }
-  &__link {
-    width: fit-content;
-  }
-}
-.footer {
-  flex-grow: 0;
-}
-</style>
