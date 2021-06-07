@@ -3,16 +3,29 @@ query PROJECT($slug: String!){
     id
     title
     description
+    slug
+    codeLink
+    domain{
+      id
+      name
+      link
+    }
+    cover{
+      id
+      url
+      formats
+      alternativeText
+    }
+
     imagesCollection{
-          id
+      id
       alternativeText
       url
       formats
     }
     categories{
+      id
       title
     }
-    slug
-    
     }
   }

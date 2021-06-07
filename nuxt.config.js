@@ -12,7 +12,7 @@ export default {
     fallback: true
   },
   router: {
-    linkPrefetchedClass: 'lien-de-nuxt-prefetched'
+    linkPrefetchedClass: 'lien-de-nuxt-prefetched',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -60,8 +60,9 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    'nuxt-gsap-module',
     '@nuxtjs/style-resources',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -69,24 +70,34 @@ export default {
   ],
   apollo: {
     includeNodeModules: true,
-    clientConfigs: {
-      default: '@/apollo/client-configs/default.js' // This is where you'll set up the client and import the possible fragment types
-    }
+    clientConfigs: { 
+      default: '@/apollo/client-configs/default.js', // This is where you'll set up the client and import the possible fragment types
+    },
+    errorHandler: '~/plugins/apollo-error-handler.js'
   },
   styleResources: {
     // your settings here
     scss: [
-      '~/assets/css/main.scss',
+      '~/assets/css/global/_reset.scss',
+      '~/assets/css/global/_mixins.scss',
+      '~/assets/css/global/_variables.scss',
+      '~/assets/css/global/_base.scss',
+      '~/assets/css/global/_modules.scss',
     ],
   },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extend(config, ctx) {} // blah blah
+    transpile: [
+      "gsap"
+    ] 
   },
 
   server: {
     host: "0.0.0.0"
   },
-
+  gsap: {
+    extraPlugins: {
+      cssRule: true,
+    }
+  }
 }

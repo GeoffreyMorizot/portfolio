@@ -1,0 +1,12 @@
+query ABOUT{
+  about {
+    pageTitle
+    headerText
+    imageProfil{
+      id
+      url
+      alternativeText
+      formats
+    }
+  }
+}

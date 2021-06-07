@@ -1,9 +1,9 @@
 query GLOBAL{
-  global
-  {
+  global {
     siteName 
     contactEmail
     siteLanguage
+    legals
     socialNetworks{
       id
       title

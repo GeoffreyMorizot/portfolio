@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main v-if="!this.$apollo.queries.home.loading" class="main">
     <Hero :home="home" /> 
       <div class="home__title-section">
         <h4>{{ home.nameSection}}</h4>

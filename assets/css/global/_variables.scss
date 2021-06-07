@@ -2,13 +2,13 @@
     
     --ff: "IBM Plex Mono", monospace;
     --secondary-ff: "IBM Plex Sans", sans-serif;
-
     --fs: 16px;
 
     --clr-cheese: rgb(253,188,124);
+    --clr-cheese-light: rgba(253,188,124, 0.7);
     --clr-klein-blue: rgb(4,25,161);
 
 
-    --site-margin: 5vw;
+    --site-margin: calc(100vw / 12);
 
 }

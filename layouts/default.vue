@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
 import BgGrid from '~/components/BgGrid'
 import Footer from '~/components/Footer'
 import global from '~/apollo/queries/global.gql'
@@ -43,6 +44,15 @@ export default {
       query: global,
     },
   },
+    methods: {
+    startAnimation(){
+      const tl = gsap.timeline()
+      tl.to( ".nav__link", { duration:0.7, y:0, opacity:1, stagger:0.8, delay:0.1})
+    }
+  },
+   mounted(){
+    this.startAnimation() 
+  },
 }
 </script>
 
@@ -53,14 +63,10 @@ export default {
   min-height: 100vh;
 }
 
+.nuxt-link-active{
+  text-decoration: underline;
+}
   
-
-  .nuxt-link-active{
-      text-decoration: underline;
-  }
-  
-
-
 .header {
   display: flex;
   align-items: center;
@@ -81,6 +87,8 @@ export default {
   }
   &__link {
     width: fit-content;
+    opacity:0;
+    transform: translate3d(0, -100%, 0);
   }
 }
 .footer {
