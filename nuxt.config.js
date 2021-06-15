@@ -67,7 +67,11 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/apollo',
+    '@nuxtjs/markdownit'
   ],
+  markdownit: {
+    runtime: true // Support `$md()`
+  },
   apollo: {
     includeNodeModules: true,
     clientConfigs: { 
@@ -89,7 +93,7 @@ export default {
   build: {
     transpile: [
       "gsap"
-    ] 
+    ],
   },
 
   server: {

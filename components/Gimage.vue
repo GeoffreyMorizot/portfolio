@@ -1,6 +1,6 @@
 <template>
   <div class="g-image">
-            <img
+     <img
         class="image"
         :width="width"
         :height="height"
@@ -67,3 +67,7 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

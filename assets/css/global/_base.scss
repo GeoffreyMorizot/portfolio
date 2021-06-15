@@ -6,22 +6,18 @@ body{
     font-size: var(--fs);
 }
 
-h1,h2,h3,h4 {
+h3 {
     font-family: var(--ff);
     color: var(--clr-klein-blue)
 }
 
-h1 {
-    font-size: 7vw;
-    font-weight: 500;
-    line-height: 1.2;
-}
 
-h2 {
+
+/* h2 {
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
-}
+} */
 
 h3 {
     font-size: 8vw;
@@ -30,9 +26,5 @@ h3 {
     color: transparent
 }
 
-h4 {
-    font-size: 2vw;
-    font-weight: 500;
-}
 
 

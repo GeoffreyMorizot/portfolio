@@ -1,42 +1,41 @@
 <template>  
-     <div class="container" v-if="!this.$apollo.queries.home.loading">
-             <Gimage 
-               v-for="project in projects" 
-               :key="project.id" 
-               :alt="project.cover.alternativeText"
-               :width="'720'"
-               :height="'480'"
-               :loading="'lazy'"  
-               :baseUrl="baseURL"
-               :source="project.cover.url"
-               :srcSet="project.cover.formats"
-            />
+     <div class="container-test" v-if="!this.$apollo.queries.about.loading">
+
+            <Experience v-for="experience in experienceData" :key="experience.id" :experience="experience"/>
+
      </div>
 </template>
 
 <script>
-import home from '~/apollo/queries/home.gql'
+import about from '~/apollo/queries/about.gql'
 import Gimage from '~/components/Gimage'
+import BackBtn from '~/components/BackBtn'
+import Experience from '~/components/Experience'
 
 export default {
     components: {  
-        Gimage
+        Gimage,
+        BackBtn,
+        Experience
     },
-    data() {
-        return {
-            baseURL: this.$config.http.imageURL
+    computed:{
+        experienceData(){
+            return this.about.experiencesList
         }
     },
-    computed: {
-        projects(){
-            return this.home.projects.map(project => project )
-        },
-    },
     apollo: {
-    home: {
+    about: {
       prefetch: true,
-      query: home,
+      query: about,
     },
   },
 }
 </script>
+
+
+<style lang="scss" scoped>
+.container-test{
+    flex-grow: 1;
+    width: calc((100vw / 6) * 4);
+}
+</style>

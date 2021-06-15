@@ -70,22 +70,20 @@ export default {
   width: 100%;
   row-gap: 8px;
   font-family: var(--secondary-ff);
+  font-size: 0.75rem;
+  text-transform: uppercase;
 }
 .spec__name {
   display: block;
   width: calc(100% / 3);
   padding-right: 24px;
-  font-family: var(--secondary-ff);
-  font-size: 1rem;
   color: var(--clr-cheese);
-  text-transform: lowercase;
 }
 .spec__value {
   display: flex;
   flex-direction: column;
   row-gap: 4px;
   width: calc((100% / 3) * 2);
-  font-family: var(--secondary-ff);
   color: var(--clr-klein-blue);
 }
 </style>

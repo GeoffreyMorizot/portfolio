@@ -6,20 +6,9 @@
       class="project__container"
     >
       <!-- TOP NAV BACK BTN -->
-      <div class="project__nav-back">
-        <a @click="pageBack($router)" class="project__back-btn">
-          <img
-            class="btn__icon"
-            width="42"
-            height="33"
-            src="../../assets/images/back-arrow.svg"
-            alt=""
-          />
-          <span class="btn__label">
-            <span>BACK</span>
-          </span>
-        </a>
-      </div>
+      <header class="back">
+         <BackBtn/> 
+      </header>
       <!-- END /////// TOP NAV BACK BTN -->
       <!-- SECTION TOP -->
       <section class="project__content">
@@ -36,7 +25,7 @@
           />
           <div class="content__detail">
             <span class="content__title-line"></span>
-            <h1 class="content__title">{{ project.title }}</h1>
+            <h1 class="content__title title-3">{{ project.title }}</h1>
             <div class="specs">
               <ProjectSpec
                 v-if="project.domain !== null"
@@ -49,7 +38,7 @@
         </div>
       </section>
       <!--END ///// SECTION TOP -->
-      <p class="project__description">{{ project.description }}</p>
+      <p class="project__description paragraph-small">{{ project.description }}</p>
       <div class="project__images">
         <img
           class="project__img"
@@ -71,12 +60,14 @@
 
 <script>
 import ProjectSpec from '~/components/ProjectSpec.vue'
+import BackBtn from '~/components/BackBtn'
 import project from '~/apollo/queries/project.gql'
 
 export default {
   layout: 'projectLayout',
   components: {
     ProjectSpec,
+    BackBtn
   },
   data() {
     return {
@@ -97,11 +88,6 @@ export default {
       },
     },
   },
-  methods: {
-    pageBack(router) {
-      router.go(-1)
-    },
-  },
 }
 </script>
 
@@ -114,28 +100,12 @@ export default {
   @include grid;
 }
 // BTN BACK
-.project__nav-back {
-  @include grid;
-  position: relative;
-  width: 100%;
-  height: 160px;
-  grid-column: 1 / span 6;
-}
-.project__back-btn {
-  grid-column: 1 / span 1;
-  position: absolute;
+.back{
   display: flex;
   align-items: center;
-  top: 50%;
-  right: 0;
-  transform: translate3d(0, -50%, 0);
-
-  cursor: pointer;
-  color: var(--clr-cheese);
-
-  .btn__label {
-    transform: translateX(0.6vw) rotate(270deg);
-  }
+  min-height: 160px;
+  font-family: var(--secondary-ff);
+  color: var(--clr-cheese)
 }
 // TOP CONTENT
 .project__content {
@@ -151,6 +121,7 @@ export default {
 .content__detail {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  align-items: baseline;
   position: absolute;
   top: 0;
   left: 0;
@@ -160,8 +131,7 @@ export default {
 .content__title-line {
   grid-column: 6 / span 2;
   width: 87%;
-  height: 7px;
-  margin-top: 45px;
+  height: clamp(3.5px, 0.35vw, 6px);
   background: var(--clr-klein-blue);
 }
 
@@ -169,8 +139,6 @@ export default {
   grid-column: 8 / span 3;
   position: relative;
   margin-bottom: 88px;
-
-  font-size: 3.5rem;
 }
 .content__link {
   grid-column: 8 / span 3;

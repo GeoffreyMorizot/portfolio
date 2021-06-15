@@ -1,12 +1,45 @@
-query ABOUT{
+
+query ABOUT {
   about {
     pageTitle
     headerText
-    imageProfil{
+    skills {
+      id
+      title
+      subSkills {
+        ... on ComponentElementsListDetail {
+          id
+          name
+        }
+      }
+    }
+    imageProfil {
       id
       url
       alternativeText
       formats
+    }
+    experiencesList {
+      ... on ComponentElementsExperience {
+        id
+        title
+        subTitle
+        description
+        period {
+          id
+          startDate
+          endDate
+        }
+      }
+    }
+    educations {
+      ... on ComponentElementsEduction {
+        id
+        name
+        location
+        startDate
+        endDate
+      }
     }
   }
 }

@@ -1,11 +1,11 @@
 <template>
   <div class="hero">
     <div class="hero__wrapper">
-      <h1 ref="title" class="hero__title">{{ home.title }}</h1>
+      <h1 ref="title" class="hero__title title-1">{{ home.title }}</h1>
       <span class="hero__job-wrapper">
-        <h2 class="hero__job">{{ home.job }}</h2>
+        <h2 ref="titles" class="hero__job title-4">{{ home.job }}</h2>
       </span>
-      <p  class="hero__bio paragraph-header">{{ home.bio }}</p>
+      <p  class="hero__bio paragraph-big">{{ home.bio }}</p>
     </div>
   </div>
 </template>
@@ -33,10 +33,15 @@ export default {
          spanEL.innerHTML = word
          el.appendChild(spanEL)
        })
+     },
+     startAnimation(){
+       const gsap = this.$gsap
+       const cssRules = this.$CSSRulePlugin
+       cssRules.getRule(".hero__job::after")
      }
   },
   mounted(){
-    console.log(this.spanify(this.$refs.title))
+    this.startAnimation()
   }
 }
 </script>
@@ -56,7 +61,7 @@ export default {
     flex-direction: column;
     grid-column: 2 / span 3;
     margin: 88px 0 64px 0;
-    color: var(--clr-cheese);
+
 
     .even {
     align-self: flex-end;
@@ -67,12 +72,13 @@ export default {
     }
   }
   .hero__job-wrapper{
-    grid-column: 3 / span 2;
+    grid-column: 3 / span 3;
     @include mobile {
       grid-column: 2 / span 2;
     }
   }
-  .hero__job {
+  .hero__job{
+
     position: relative;
     width: fit-content;
     color: transparent;
@@ -80,8 +86,6 @@ export default {
     margin: 0 0 24px 0;
     text-transform: uppercase;
     animation: reveal 1s linear 0.6s forwards;
-    clip-path: 50%;
-
   }
   @keyframes reveal {
     0% {
@@ -98,7 +102,7 @@ export default {
     }
     
   }
-  .hero__job::after {
+  .hero__job::after{
       content: '';
       position: absolute;
       width: 75px;
@@ -108,7 +112,7 @@ export default {
       background: var(--clr-klein-blue);
     }
 
-  .hero__job::before {
+  .hero__job::before{
     content: '';
     position: absolute;
     will-change: transform;

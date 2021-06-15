@@ -91,3 +91,6 @@ sw.*
 
 # Todo
 .todo
+
+# Test page
+test.vue
