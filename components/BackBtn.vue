@@ -40,19 +40,19 @@ export default {
   cursor: pointer;
 }
 
-.back-btn__icon{
-    margin-right: 8px;
-    opacity: 0;
-    animation: iconFade 0.4s ease-out 0.4s forwards;
+.back-btn__icon {
+  margin-right: 8px;
+  opacity: 0;
+  animation: iconFade 0.4s ease-out 0.4s forwards;
 }
 
 @keyframes iconFade {
-    from{
-     opacity: 0;
-    }
-    to{
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
-    }
+  }
 }
 
 .back-btn__label {

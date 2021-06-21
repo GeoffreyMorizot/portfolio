@@ -1,29 +1,32 @@
-<template>  
-     <div class="container-test" v-if="!this.$apollo.queries.about.loading">
-
-            <Experience v-for="experience in experienceData" :key="experience.id" :experience="experience"/>
-
-     </div>
+<template>
+  <div class="container-test" v-if="!this.$apollo.queries.about.loading">
+    <Experience
+      v-for="experience in experienceData"
+      :key="experience.id"
+      :experience="experience"
+    />
+    <OpenIcon duration="0.1s" color="#0025bb" />
+  </div>
 </template>
 
 <script>
 import about from '~/apollo/queries/about.gql'
-import Gimage from '~/components/Gimage'
-import BackBtn from '~/components/BackBtn'
+
 import Experience from '~/components/Experience'
+import OpenIcon from '~/components/OpenIcon'
 
 export default {
-    components: {  
-        Gimage,
-        BackBtn,
-        Experience
+  components: {
+    Experience,
+    OpenIcon,
+  },
+
+  computed: {
+    experienceData() {
+      return this.about.experiencesList
     },
-    computed:{
-        experienceData(){
-            return this.about.experiencesList
-        }
-    },
-    apollo: {
+  },
+  apollo: {
     about: {
       prefetch: true,
       query: about,
@@ -34,8 +37,8 @@ export default {
 
 
 <style lang="scss" scoped>
-.container-test{
-    flex-grow: 1;
-    width: calc((100vw / 6) * 4);
+.container-test {
+  flex-grow: 1;
+  width: calc((100vw / 6) * 4);
 }
 </style>

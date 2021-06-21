@@ -1,11 +1,13 @@
 <template>
   <div class="hero">
     <div class="hero__wrapper">
-      <h1 ref="title" class="hero__title title-1">{{ home.title }}</h1>
+      <h1 ref="title" class="hero__title title-1">
+        {{ home.title }}
+      </h1>
       <span class="hero__job-wrapper">
         <h2 ref="titles" class="hero__job title-4">{{ home.job }}</h2>
       </span>
-      <p  class="hero__bio paragraph-big">{{ home.bio }}</p>
+      <p class="hero__bio paragraph-big">{{ home.bio }}</p>
     </div>
   </div>
 </template>
@@ -19,30 +21,28 @@ export default {
     },
   },
   data() {
-    return {
-     
-    }
+    return {}
   },
   methods: {
-     spanify(el){
-       const words = el.innerHTML.split(" ")
-       el.innerHTML = ''
-       words.map((word,index)=> {
-         const spanEL = document.createElement('span', 'word')
-         spanEL.setAttribute("class", `title ${index % 2 == 0 ? 'odd' : 'even'}`)
-         spanEL.innerHTML = word
-         el.appendChild(spanEL)
-       })
-     },
-     startAnimation(){
-       const gsap = this.$gsap
-       const cssRules = this.$CSSRulePlugin
-       cssRules.getRule(".hero__job::after")
-     }
+    spanify(el) {
+      const words = el.innerHTML.split(' ')
+      el.innerHTML = ''
+      return words
+        .filter((word) => word.match(/[A-za-z0–9_]/g))
+        .map((word, index) => {
+          const spanEL = document.createElement('span', 'word')
+          spanEL.setAttribute(
+            'class',
+            `title ${index % 2 == 0 ? 'odd' : 'even'}`
+          )
+          spanEL.innerHTML = word
+          el.appendChild(spanEL)
+        })
+    },
   },
-  mounted(){
-    this.startAnimation()
-  }
+  mounted() {
+    this.spanify(this.$refs.title)
+  },
 }
 </script>
 
@@ -56,29 +56,32 @@ export default {
     width: 100%;
   }
 
+  .load {
+    display: none;
+  }
+
   .hero__title {
     display: flex;
     flex-direction: column;
     grid-column: 2 / span 3;
     margin: 88px 0 64px 0;
-
+    opacity: 1;
 
     .even {
-    align-self: flex-end;
+      align-self: flex-end;
     }
 
     @include mobile {
       grid-column: 2 / span 2;
     }
   }
-  .hero__job-wrapper{
+  .hero__job-wrapper {
     grid-column: 3 / span 3;
     @include mobile {
       grid-column: 2 / span 2;
     }
   }
-  .hero__job{
-
+  .hero__job {
     position: relative;
     width: fit-content;
     color: transparent;
@@ -89,30 +92,29 @@ export default {
   }
   @keyframes reveal {
     0% {
-        color: transparent;
+      color: transparent;
     }
     50% {
-        color: transparent;
+      color: transparent;
     }
     51% {
-        color: var(--clr-klein-blue);
+      color: var(--clr-klein-blue);
     }
     100% {
-        color: var(--clr-klein-blue);
+      color: var(--clr-klein-blue);
     }
-    
   }
-  .hero__job::after{
-      content: '';
-      position: absolute;
-      width: 75px;
-      height: 2px;
-      bottom: -8px;
-      left: 0;
-      background: var(--clr-klein-blue);
-    }
+  .hero__job::after {
+    content: '';
+    position: absolute;
+    width: 75px;
+    height: 2px;
+    bottom: -8px;
+    left: 0;
+    background: var(--clr-klein-blue);
+  }
 
-  .hero__job::before{
+  .hero__job::before {
     content: '';
     position: absolute;
     will-change: transform;
@@ -126,21 +128,16 @@ export default {
   }
 
   @keyframes revealSlider {
-    0%{
+    0% {
       transform: translate3d(-100%, 0, 0);
     }
     50% {
       transform: translate3d(0, 0, 0);
     }
-    100%{
+    100% {
       transform: translate3d(100%, 0, 0);
     }
-    
   }
-
-
-
-
 
   .hero__bio {
     grid-column: 3 / span 3;

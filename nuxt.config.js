@@ -4,7 +4,7 @@ export default {
   target: 'static',
   publicRuntimeConfig: {
     http: {
-      imageURL: process.env.API_URL === 'http://localhost:1337' ? 'http://localhost:1337' : '' 
+      imageURL: process.env.API_URL === 'http://localhost:1337' ? 'http://localhost:1337' : ''
     },
   },
   generate: {
@@ -74,7 +74,7 @@ export default {
   },
   apollo: {
     includeNodeModules: true,
-    clientConfigs: { 
+    clientConfigs: {
       default: '@/apollo/client-configs/default.js', // This is where you'll set up the client and import the possible fragment types
     },
     errorHandler: '~/plugins/apollo-error-handler.js'
@@ -82,11 +82,8 @@ export default {
   styleResources: {
     // your settings here
     scss: [
-      '~/assets/css/global/_reset.scss',
       '~/assets/css/global/_mixins.scss',
       '~/assets/css/global/_variables.scss',
-      '~/assets/css/global/_base.scss',
-      '~/assets/css/global/_modules.scss',
     ],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build

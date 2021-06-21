@@ -1,22 +1,41 @@
 <template>
   <article v-if="experience !== null" class="experience">
     <section class="experience__period">
-      <time :datetime="experience.period.startDate">{{ experience.period.startDate | formatDate() | changeSeparator() }}</time>
+      <time :datetime="experience.period.startDate">{{
+        experience.period.startDate | formatDate() | changeSeparator()
+      }}</time>
       <span>→</span>
-      <time :datetime="experience.period.endDate === null ? new Date : experience.period.endDate">{{ experience.period.endDate | formatDate() | changeSeparator() }}</time>
+      <time
+        :datetime="
+          experience.period.endDate === null
+            ? new Date()
+            : experience.period.endDate
+        "
+        >{{
+          experience.period.endDate | formatDate() | changeSeparator()
+        }}</time
+      >
     </section>
-    <section @click.prevent="collapse()" @keyup.enter="collapse()" class="experience__content">
+    <section
+      @click.prevent="collapse()"
+      @keyup.enter="collapse()"
+      class="experience__content"
+    >
       <header tabindex="0" class="content__top">
         <h4 class="title-5">{{ experience.title }}</h4>
-        <img ref="icon" src="../assets/images/btn-open.svg" alt="icône déplier" />
+        <OpenIcon :opened="open" duration="0.1s" color="#0025bb" />
       </header>
       <article class="content__bottom">
         <h5>{{ experience.subTitle }}</h5>
         <transition name="fade">
-          <div v-show="open" v-html="$md.render(experience.description)"></div>
+          <div
+            class="list__xp"
+            :class="{ opened: open }"
+            v-show="open"
+            v-html="$md.render(experience.description)"
+          ></div>
         </transition>
       </article>
-      
     </section>
   </article>
 </template>
@@ -36,8 +55,7 @@ export default {
   },
   methods: {
     collapse() {
-      this.open = !this.open
-      this.open ? this.$refs.icon.style.transform = 'rotate(45deg)' : this.$refs.icon.style.transform = 'rotate(0deg)'
+      return (this.open = !this.open)
     },
   },
   filters: {
@@ -48,15 +66,15 @@ export default {
         year: 'numeric',
       })
     },
-    changeSeparator(value){
-       return value.replace(/\//g, "-")
-    }
+    changeSeparator(value) {
+      return value.replace(/\//g, '-')
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.experience{
+.experience {
   position: relative;
   display: flex;
   width: 100%;
@@ -68,9 +86,9 @@ export default {
   &:not(:last-child) {
     padding-bottom: 16px;
   }
-  
-  &::before{
-    content:'';
+
+  &::before {
+    content: '';
     position: absolute;
     top: -16px;
     left: 0;
@@ -86,13 +104,13 @@ export default {
       width: 100%;
       padding: 0;
     }
-    .experience__content{
+    .experience__content {
       width: 100%;
     }
   }
 }
 
-.experience__period{
+.experience__period {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -104,7 +122,7 @@ export default {
 
 .experience__content {
   cursor: pointer;
-  width: calc((100% / 4)*3);
+  width: calc((100% / 4) * 3);
 }
 
 .content__top {
@@ -127,21 +145,22 @@ export default {
   line-height: 1.5;
   margin-bottom: 32px;
 
-  h5{
-  color: var(--clr-cheese);
+  h5 {
+    color: var(--clr-cheese);
   }
 
-  pre{
-  white-space: pre-wrap;
-  color: var(--clr-klein-blue);
-  margin: 16px 0;
+  .list__xp {
+    margin: 16px 0 0 0;
+
+    &.opened {
+    }
   }
 }
 
 // TRANSITION
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.25s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

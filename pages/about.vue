@@ -1,58 +1,63 @@
 <template>
-  <div v-if="!this.$apollo.queries.about.loading" class="container-about">
-    <main>
-      <header class="about-header">
-        <div class="about-header__text">
-          <h1 class="about-header__title title-2">{{ about.pageTitle }}</h1>
-          <p class="paragraph-big">{{ about.headerText }}</p>
-        </div>
-        <Gimage
-          class="about-header__img"
-          :alt="about.imageProfil.alternativeText"
-          width="1440"
-          height="1977"
-          baseUrl=""
-          loading="lazy"
-          :source="about.imageProfil.url"
-          :srcSet="about.imageProfil.formats"
-          sizes="41.66vw"
-        />
-      </header>
-      <main class="about-content">
-        <section class="experiences">
-          <h2 class="experiences__title title-3">Expériences</h2>
-          <Experience
-            v-for="experience in experienceData"
-            :key="experience.id"
-            :experience="experience"
+  <div class="container-about">
+    <div v-if="this.$apollo.queries.about.loading" class="about-loader">
+      <span>LOADING</span>
+    </div>
+    <div v-if="!this.$apollo.queries.about.loading">
+      <div>
+        <header class="about-header">
+          <div class="about-header__text">
+            <h1 class="about-header__title title-2">{{ about.pageTitle }}</h1>
+            <p class="paragraph-big">{{ about.headerText }}</p>
+          </div>
+          <Gimage
+            class="about-header__img"
+            :alt="about.imageProfil.alternativeText"
+            width="1440"
+            height="1977"
+            baseUrl=""
+            loading="lazy"
+            :source="about.imageProfil.url"
+            :srcSet="about.imageProfil.formats"
+            sizes="41.66vw"
           />
-        </section>
-        <div class="skills-educations">
-          <section class="skills">
-            <h2 class="skills___title title-3">Compétences</h2>
-            <div class="skills__wrapper">
-              <Skill
-                class="skill-comp"
-                v-for="skill in skillsData"
-                :key="skill.id"
-                :skill="skill"
-              />
-            </div>
+        </header>
+        <main class="about-content">
+          <section class="experiences">
+            <h2 class="experiences__title title-3">Expériences</h2>
+            <Experience
+              v-for="experience in experienceData"
+              :key="experience.id"
+              :experience="experience"
+            />
           </section>
-          <section class="educations">
-            <h2 class="educations___title title-3">Formations</h2>
-            <div class="educations__wrapper">
-              <Education
-                class="education-comp"
-                v-for="education in educationsData"
-                :key="education.id"
-                :education="education"
-              />
-            </div>
-          </section>
-        </div>
-      </main>
-    </main>
+          <div class="skills-educations">
+            <section class="skills">
+              <h2 class="skills___title title-3">Compétences</h2>
+              <div class="skills__wrapper">
+                <Skill
+                  class="skill-comp"
+                  v-for="skill in skillsData"
+                  :key="skill.id"
+                  :skill="skill"
+                />
+              </div>
+            </section>
+            <section class="educations">
+              <h2 class="educations___title title-3">Formations</h2>
+              <div class="educations__wrapper">
+                <Education
+                  class="education-comp"
+                  v-for="education in educationsData"
+                  :key="education.id"
+                  :education="education"
+                />
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -87,10 +92,23 @@ export default {
       query: about,
     },
   },
+  mounted() {
+    Promise.all(
+      Array.from(document.images).map((img) => console.log(img))
+    ).then(() => {
+      console.log('images finished loading')
+    })
+  },
 }
 </script>
 
 <style lang="scss">
+.about-loader {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
 .container-about {
   flex-grow: 1;
 
@@ -182,8 +200,8 @@ export default {
   width: 50%;
 }
 
-.educations__wrapper{
-display: flex;
+.educations__wrapper {
+  display: flex;
   flex-direction: column;
   row-gap: 24px;
 }
