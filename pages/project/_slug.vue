@@ -7,7 +7,7 @@
     >
       <!-- TOP NAV BACK BTN -->
       <header class="back">
-         <BackBtn/> 
+        <BackBtn />
       </header>
       <!-- END /////// TOP NAV BACK BTN -->
       <!-- SECTION TOP -->
@@ -20,7 +20,7 @@
                   ${baseURL}${project.cover.formats.small.url} ${project.cover.formats.small.width}w,
                   ${baseURL}${project.cover.formats.medium.url} ${project.cover.formats.medium.width}w,
                   ${baseURL}${project.cover.formats.large.url} ${project.cover.formats.large.width}w`"
-             sizes="50vw"
+            sizes="50vw"
             alt=""
           />
           <div class="content__detail">
@@ -38,13 +38,15 @@
         </div>
       </section>
       <!--END ///// SECTION TOP -->
-      <p class="project__description paragraph-small">{{ project.description }}</p>
+      <p class="project__description paragraph-small">
+        {{ project.description }}
+      </p>
       <div class="project__images">
         <img
-          class="project__img"
-          loading="lazy"
           v-for="image in project.imagesCollection"
           :key="image.id"
+          class="project__img"
+          loading="lazy"
           :src="`${baseURL}${image.url}`"
           :alt="image.alternativeText"
           :srcset="`${baseURL}${image.formats.thumbnail.url} ${image.formats.thumbnail.width}w,
@@ -60,20 +62,19 @@
 
 <script>
 import ProjectSpec from '~/components/ProjectSpec.vue'
-import BackBtn from '~/components/BackBtn'
+import BackBtn from '~/components/project/BackBtn.vue'
 import project from '~/apollo/queries/project.gql'
 
 export default {
-  layout: 'projectLayout',
   components: {
     ProjectSpec,
-    BackBtn
+    BackBtn,
   },
+  layout: 'projectLayout',
   data() {
     return {
       project: null,
       baseURL: this.$config.http.imageURL,
-      
     }
   },
   apollo: {
@@ -100,12 +101,12 @@ export default {
   @include grid;
 }
 // BTN BACK
-.back{
+.back {
   display: flex;
   align-items: center;
   min-height: 160px;
   font-family: var(--secondary-ff);
-  color: var(--clr-cheese)
+  color: var(--clr-cheese);
 }
 // TOP CONTENT
 .project__content {
@@ -148,7 +149,7 @@ export default {
   grid-column: 8 / span 3;
   display: flex;
   flex-direction: column;
-  row-gap: 16px;  
+  row-gap: 16px;
 }
 
 .project__description {

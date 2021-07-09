@@ -1,11 +1,10 @@
 <template>
   <div class="container">
     <BgGrid />
-    
+
     <header class="header">
       <nav class="nav">
         <nuxt-link class="nav__link" to="/">
-
           <img
             width="49"
             height="37"
@@ -21,17 +20,16 @@
 </template>
 
 <script>
-import BgGrid from '~/components/BgGrid'
-import Footer from '~/components/Footer'
+import BgGrid from '~/components/common/BgGrid'
 import global from '~/apollo/queries/global.gql'
 
 export default {
   components: {
-     BgGrid,
+    BgGrid,
   },
   data() {
     return {
-      baseURL: this.$config.http.imageURL
+      baseURL: this.$config.http.imageURL,
     }
   },
   apollo: {

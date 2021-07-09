@@ -7,14 +7,15 @@
 </template>
 
 <script>
-import BgGrid from '~/components/BgGrid'
-import Footer from '~/components/Footer'
 import global from '~/apollo/queries/global.gql'
+
+import BgGrid from '~/components/common/BgGrid.vue'
+import Footer from '~/components/common/Footer.vue'
 
 export default {
   components: {
-     BgGrid,
-     Footer
+    BgGrid,
+    Footer,
   },
   apollo: {
     global: {

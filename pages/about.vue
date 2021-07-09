@@ -1,26 +1,34 @@
 <template>
   <div class="container-about">
-    <div v-if="this.$apollo.queries.about.loading" class="about-loader">
+    <div v-if="isLoading" class="about-loader">
       <span>LOADING</span>
     </div>
-    <div v-if="!this.$apollo.queries.about.loading">
+    <div v-if="!isLoading">
       <div>
         <header class="about-header">
           <div class="about-header__text">
-            <h1 class="about-header__title title-2">{{ about.pageTitle }}</h1>
-            <p class="paragraph-big">{{ about.headerText }}</p>
+            <h1 class="about-header__title overlay title-2">
+              {{ about.pageTitle }}
+            </h1>
+            <div
+              ref="paragraph"
+              class="paragraph-big"
+              v-html="$md.render(about.headerText)"
+            ></div>
           </div>
-          <Gimage
-            class="about-header__img"
-            :alt="about.imageProfil.alternativeText"
-            width="1440"
-            height="1977"
-            baseUrl=""
-            loading="lazy"
-            :source="about.imageProfil.url"
-            :srcSet="about.imageProfil.formats"
-            sizes="41.66vw"
-          />
+          <div class="about-header__img-wrapper">
+            <Gimage
+              class="about-header__img overlay"
+              :alt="about.imageProfil.alternativeText"
+              width="1440"
+              height="1977"
+              loading="lazy"
+              baseUrl=""
+              :source="about.imageProfil.url"
+              :srcSet="about.imageProfil.formats"
+              sizes="41.66vw"
+            />
+          </div>
         </header>
         <main class="about-content">
           <section class="experiences">
@@ -32,26 +40,30 @@
             />
           </section>
           <div class="skills-educations">
-            <section class="skills">
+            <section ref="skills" class="skills">
               <h2 class="skills___title title-3">Compétences</h2>
               <div class="skills__wrapper">
-                <Skill
-                  class="skill-comp"
+                <div
                   v-for="skill in skillsData"
                   :key="skill.id"
-                  :skill="skill"
-                />
+                  ref="skill"
+                  class="anim-js"
+                >
+                  <Skill class="skill-comp" :skill="skill" />
+                </div>
               </div>
             </section>
-            <section class="educations">
+            <section ref="educations" class="educations">
               <h2 class="educations___title title-3">Formations</h2>
               <div class="educations__wrapper">
-                <Education
-                  class="education-comp"
+                <div
                   v-for="education in educationsData"
                   :key="education.id"
-                  :education="education"
-                />
+                  ref="education"
+                  class="anim-js"
+                >
+                  <Education class="education-comp" :education="education" />
+                </div>
               </div>
             </section>
           </div>
@@ -63,10 +75,11 @@
 
 <script>
 import about from '~/apollo/queries/about'
-import Gimage from '~/components/Gimage'
-import Experience from '~/components/Experience'
-import Skill from '~/components/Skill'
-import Education from '~/components/Education'
+
+import Gimage from '~/components/common/Gimage'
+import Experience from '~/components/about/Experience.vue'
+import Skill from '~/components/about/Skill.vue'
+import Education from '~/components/about/Education.vue'
 
 export default {
   components: {
@@ -74,6 +87,11 @@ export default {
     Experience,
     Skill,
     Education,
+  },
+  data() {
+    return {
+      elements: [],
+    }
   },
   computed: {
     experienceData() {
@@ -85,6 +103,27 @@ export default {
     educationsData() {
       return this.about.educations
     },
+    isLoading() {
+      return this.$apollo.queries.about.loading
+    },
+  },
+  updated() {
+    this.$nextTick(function () {
+      this.elements = [this.$refs.educations, this.$refs.skills]
+      this.animationReavel()
+      this.setIntersectionObserver()
+    })
+  },
+  mounted() {
+    this.$nextTick(function () {
+      if (
+        Object.entries(this.$refs).length === 0 &&
+        this.$refs.constructor === Object
+      )
+        return
+      this.animationReavel()
+      this.setIntersectionObserver()
+    })
   },
   apollo: {
     about: {
@@ -92,12 +131,74 @@ export default {
       query: about,
     },
   },
-  mounted() {
-    Promise.all(
-      Array.from(document.images).map((img) => console.log(img))
-    ).then(() => {
-      console.log('images finished loading')
-    })
+  methods: {
+    setProperties() {
+      this.$gsap.set([this.$refs.skill, this.$refs.education], {
+        y: '100%',
+        opacity: 0,
+      })
+    },
+    animationReavel() {
+      const overlayEL = this.$el.querySelectorAll('.overlay')
+      const rule = this.$CSSRulePlugin.getRule('.overlay::before')
+      this.$gsap.set(overlayEL, { x: '-100%' })
+      this.$gsap.set(rule, { cssRule: { x: '0%' } })
+
+      const tl = this.$gsap.timeline()
+      const duration = 0.7
+
+      tl.to(overlayEL, duration, { delay: 0.3, x: '0%', stagger: 0.5 })
+      tl.to(rule, duration, { cssRule: { x: '100%' } })
+
+      tl.fromTo(
+        this.$refs.paragraph,
+        { y: '20%', opacity: 0 },
+        { duration: 1, y: '0%', opacity: 1, ease: 'power4.out' },
+        '-=0.5'
+      )
+    },
+    animationList(arrayEL, d) {
+      const tl = this.$gsap.timeline()
+      tl.fromTo(
+        arrayEL,
+        0.4,
+        { y: '100%', opacity: 0 },
+        { y: '0', opacity: 1, delay: d, stagger: 0.2 }
+      )
+    },
+    setIntersectionObserver() {
+      this.setProperties()
+
+      if (this.supportIntersectionObserver) {
+        const observerCallback = (intersections) => {
+          if (intersections[0].isIntersecting) {
+            intersections.reverse().forEach((i, index) => {
+              this.animationList(
+                i.target.querySelectorAll('.anim-js'),
+                index * 0.2
+              )
+              observer.unobserve(i.target)
+            })
+          }
+        }
+        const observer = new IntersectionObserver(observerCallback, {
+          threshold: 0.7,
+        })
+
+        const elements = [this.$refs.educations, this.$refs.skills]
+
+        elements.forEach((el) => {
+          observer.observe(el)
+        })
+      }
+    },
+    supportIntersectionObserver() {
+      return (
+        'IntersectionObserver' in window &&
+        'IntersectionObserverEntry' in window &&
+        'intersectionRatio' in window.IntersectionObserverEntry.prototype
+      )
+    },
   },
 }
 </script>
@@ -106,7 +207,7 @@ export default {
 .about-loader {
   display: grid;
   place-items: center;
-  height: 100%;
+  height: 100vh;
 }
 
 .container-about {
@@ -148,19 +249,24 @@ export default {
   min-height: 57.2vw;
 }
 .about-header__text {
+  overflow: hidden;
   grid-column: 3 / span 4;
 }
 .about-header__title {
   margin-bottom: 96px;
+  position: relative;
 }
-.about-header__img {
-  grid-column: 8 / span 5;
+
+.about-header__img-wrapper {
+  color: var(--clr-cheese);
+  overflow: hidden;
   position: absolute;
   width: calc((100% / 12) * 5);
   top: 0;
   right: 0;
   z-index: -1000;
 }
+
 .about-content {
   @include grid;
 }
@@ -191,8 +297,7 @@ export default {
 }
 
 .skills__wrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   row-gap: 24px;
 }
 
@@ -201,8 +306,7 @@ export default {
 }
 
 .educations__wrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   row-gap: 24px;
 }
 </style>

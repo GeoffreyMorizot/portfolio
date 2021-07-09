@@ -1,11 +1,10 @@
 <template>
   <div class="container">
     <BgGrid />
-    
+
     <header class="header">
       <nav class="nav">
         <nuxt-link class="nav__link" to="/">
-
           <img
             width="49"
             height="37"
@@ -24,18 +23,18 @@
 
 <script>
 import { gsap } from 'gsap'
-import BgGrid from '~/components/BgGrid'
-import Footer from '~/components/Footer'
+import BgGrid from '~/components/common/BgGrid'
+import Footer from '~/components/common/Footer'
 import global from '~/apollo/queries/global.gql'
 
 export default {
   components: {
-     BgGrid,
-     Footer
+    BgGrid,
+    Footer,
   },
   data() {
     return {
-      baseURL: this.$config.http.imageURL
+      baseURL: this.$config.http.imageURL,
     }
   },
   apollo: {
@@ -44,14 +43,20 @@ export default {
       query: global,
     },
   },
-    methods: {
-    startAnimation(){
+  methods: {
+    startAnimation() {
       const tl = gsap.timeline()
-      tl.to( ".nav__link", { duration:0.7, y:0, opacity:1, stagger:0.8, delay:0.1})
-    }
+      tl.to('.nav__link', {
+        duration: 0.7,
+        y: 0,
+        opacity: 1,
+        stagger: 0.8,
+        delay: 0.1,
+      })
+    },
   },
-   mounted(){
-    this.startAnimation() 
+  mounted() {
+    this.startAnimation()
   },
 }
 </script>
@@ -63,10 +68,10 @@ export default {
   min-height: 100vh;
 }
 
-.nuxt-link-active{
+.nuxt-link-active {
   text-decoration: underline;
 }
-  
+
 .header {
   display: flex;
   align-items: center;
@@ -79,7 +84,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 1000 ;
+  z-index: 1000;
   width: 100%;
   margin: 0 var(--site-margin) 0 var(--site-margin);
   &__logo {
@@ -88,7 +93,7 @@ export default {
   }
   &__link {
     width: fit-content;
-    opacity:0;
+    opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
 }

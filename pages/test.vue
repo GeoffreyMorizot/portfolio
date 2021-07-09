@@ -12,8 +12,8 @@
 <script>
 import about from '~/apollo/queries/about.gql'
 
-import Experience from '~/components/Experience'
-import OpenIcon from '~/components/OpenIcon'
+import Experience from '~/components/about/Experience'
+import OpenIcon from '~/components/about/OpenIcon'
 
 export default {
   components: {

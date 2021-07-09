@@ -47,6 +47,11 @@ export default {
   data() {
     return {}
   },
+  watch: {
+    opened(newVal) {
+      this.opener(newVal)
+    },
+  },
   methods: {
     opener(boolean) {
       /* this.opened = !this.opened */
@@ -55,15 +60,6 @@ export default {
       } else {
         this.$refs.animationToPlus.beginElement()
       }
-    },
-  },
-  mounted() {
-    console.log(this.$refs)
-  },
-  watch: {
-    opened: function (newVal) {
-      console.log('Prop changed: ', newVal)
-      this.opener(newVal)
     },
   },
 }

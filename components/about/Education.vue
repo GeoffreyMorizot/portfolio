@@ -21,12 +21,6 @@
 
 <script>
 export default {
-  props: {
-    education: {
-      type: Object,
-      default: null,
-    },
-  },
   filters: {
     formatDate(value) {
       if (!value) return "Aujourd'hui"
@@ -36,6 +30,12 @@ export default {
     },
     changeSeparator(value) {
       return value.replace(/\//g, '-')
+    },
+  },
+  props: {
+    education: {
+      type: Object,
+      default: null,
     },
   },
 }

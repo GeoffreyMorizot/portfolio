@@ -1,4 +1,3 @@
-
 query ABOUT {
   about {
     pageTitle

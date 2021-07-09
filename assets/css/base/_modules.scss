@@ -5,72 +5,94 @@
 
 //title
 
-.title-1{
+%title{
     font-family: var(--ff);
     min-height: 0vw; // Fix clamp() bug on safari
-    font-size: clamp(1.7rem, 8vw, 13rem);
+}
+%title-500{
     font-weight: 500;
     font-style: normal;
     line-height: auto;
+}
+.title-1{
+    @extend %title;
+    @extend %title-500;
+    font-size: clamp(1.7rem, 8vw, 13rem);
     color: var(--clr-cheese)
 }
-
 .title-2{
-    font-family: var(--ff);
-    min-height: 0vw; // Fix clamp() bug on safari
+    @extend %title;
+    @extend %title-500;
     font-size: clamp(1.2rem, 6vw, 7.2rem);
-    font-weight: 500;
-    font-style: normal;
-    line-height: auto;
     letter-spacing: -2.6%;
     color: var(--clr-cheese)
 }
-
 .title-3{
-    font-family: var(--ff);
-    min-height: 0vw; // Fix clamp() bug on safari
+    @extend %title;
+    @extend %title-500;
     font-size: clamp(1.5rem, 4.4vw, 2.8rem);
-    font-weight: 500;
     color: var(--clr-klein-blue)
 }
-
 .title-4{
-    font-family: var(--ff);
-    min-height: 0vw; // Fix clamp() bug on safari
+    @extend %title;
     font-size: clamp(1.2rem, 1.8vw, 2.5rem);
 }
-
 .title-5{
-    font-family: var(--ff);
-    min-height: 0vw; // Fix clamp() bug on safari
+    @extend %title;
     font-size: clamp(1rem, 1.6vw, 2.5rem);
 }
-
 .title-6{
-    font-family: var(--ff);
-    min-height: 0vw; // Fix clamp() bug on safari
-    font-weight: 500;
+    @extend %title;
     word-spacing: 0.014rem;
     font-size: clamp(0.9rem, 1vw, 1.3rem);
 }
 
 //PARAGRAPH
 
-.paragraph{
+%paragraph{
     font-family: var(--secondary-ff);
     color: var(--clr-klein-blue);
 }
-
 .paragraph-big{
-    @extend .paragraph;
+    @extend %paragraph;
     min-height: 0vw; // Fix clamp() bug on safari
     font-size: clamp(1rem, 1.65vw, 1.2rem);
     line-height: 1.5
 }
 .paragraph-small{
-    @extend .paragraph;
+    @extend %paragraph;
     min-height: 0vw; // Fix clamp() bug on safari
     font-size: clamp(0.9rem, 1.10vw, 1.2rem);
     line-height: 1.6 
 }
+
+
+// HYPHEN
+
+.hyphen{
+    &:before {
+        content: '';
+        position: absolute;
+        top: 22px;
+        left: 0;
+        height: 3px;
+        width: 20px;
+        background: var(--clr-cheese);
+      }
+}
+.overlay {
+    transform: translate3d(-100%, 0, 0);
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: currentColor;
+    }
+  }
+
+
+
 

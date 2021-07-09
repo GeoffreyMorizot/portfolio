@@ -1,11 +1,11 @@
 <template>
   <div class="nav-back-btn">
-    <a @click="pageBack($router)" class="back-btn__link">
+    <a class="back-btn__link" @click="pageBack($router)">
       <img
         class="back-btn__icon"
         width="42"
         height="33"
-        src=".././assets/images/back-arrow.svg"
+        src="../../assets/images/back-arrow.svg"
         alt=""
       />
       <span class="back-btn__label">
@@ -19,7 +19,7 @@
 export default {
   methods: {
     pageBack(router) {
-      router.go(-1)
+      this.$nuxt.context.from !== undefined ? router.go(-1) : router.push('/')
     },
   },
 }

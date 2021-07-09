@@ -1,9 +1,9 @@
 <template>
   <div class="specs">
-          <!-- DOMAIN -->
+    <!-- DOMAIN -->
     <div v-if="domain !== null" class="spec">
       <span class="spec__name">domain:</span>
-      <span class="spec__value" v-if="domain !== null">
+      <span v-if="domain !== null" class="spec__value">
         <a :href="domain.link" target="_blank" rel="noopener noreferrer">{{
           domain.name
         }}</a>
@@ -19,7 +19,11 @@
       </span>
     </div>
     <!-- CATEGORIES -->
-    <ul ref="cat" v-if="categories !== null && categories.length !== 0" class="spec">
+    <ul
+      v-if="categories !== null && categories.length !== 0"
+      ref="cat"
+      class="spec"
+    >
       <span class="spec__name"
         >{{ 'technologie' | pluralize(categories.length) }}:</span
       >
@@ -34,6 +38,15 @@
 
 <script>
 export default {
+  filters: {
+    pluralize(word, amount) {
+      return amount > 1 || amount === 0 ? `${word}s` : word
+    },
+    beautifyURL(word) {
+      if (!word) return
+      return word.split('//').splice(1, 1)[0]
+    },
+  },
   props: {
     categories: {
       default: null,
@@ -44,18 +57,9 @@ export default {
       type: Object,
     },
     codeLink: {
-        default:null,
-        type: String,
-    }
-  },
-  filters: {
-    pluralize: function (word, amount) {
-      return amount > 1 || amount === 0 ? `${word}s` : word
+      default: null,
+      type: String,
     },
-    beautifyURL: function(word){
-      if(!word) return
-      return word.split('//').splice(1, 1)[0]; 
-    }
   },
 }
 </script>
