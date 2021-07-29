@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <BgGrid />
-
     <header class="header">
       <nav class="nav">
         <nuxt-link class="nav__link" to="/">
@@ -22,7 +21,6 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
 import BgGrid from '~/components/common/BgGrid'
 import Footer from '~/components/common/Footer'
 import global from '~/apollo/queries/global.gql'
@@ -45,7 +43,7 @@ export default {
   },
   methods: {
     startAnimation() {
-      const tl = gsap.timeline()
+      const tl = this.$gsap.timeline()
       tl.to('.nav__link', {
         duration: 0.7,
         y: 0,

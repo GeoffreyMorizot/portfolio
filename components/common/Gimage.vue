@@ -1,15 +1,15 @@
 <template>
   <div class="g-image">
-     <img
-        class="image"
-        :width="width"
-        :height="height"
-        :loading="loading"
-        :src='`${baseUrl}${source}`'
-        :alt="alt"
-        :srcset="formats"
-        :sizes="sizes"          
-      />
+    <img
+      class="image"
+      :width="width"
+      :height="height"
+      :loading="loading"
+      :src="`${baseUrl}${source}`"
+      :alt="alt"
+      :srcset="formats"
+      :sizes="sizes"
+    />
   </div>
 </template>
 
@@ -22,14 +22,14 @@ export default {
       default: '',
     },
     width: {
-       type: String,
-       required: true,
-       default: '',
+      type: String,
+      required: true,
+      default: '',
     },
     height: {
-       type: String,
-       required: true,
-       default: '',
+      type: String,
+      required: true,
+      default: '',
     },
     alt: {
       type: String,
@@ -40,7 +40,7 @@ export default {
       type: String,
       required: false,
       default: 'lazy',
-      validator: value => ['lazy', 'eager'].indexOf(value) !== -1
+      validator: (value) => ['lazy', 'eager'].includes(value),
     },
     source: {
       type: String,
@@ -59,15 +59,11 @@ export default {
   },
   computed: {
     formats() {
-      if (!this.srcSet) return ''      
+      if (!this.srcSet) return ''
       return Object.values(this.srcSet)
-        .map(format => `${this.baseUrl}${format.url} ${format.width}w`)
+        .map((format) => `${this.baseUrl}${format.url} ${format.width}w`)
         .join(', ')
     },
   },
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

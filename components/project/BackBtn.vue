@@ -31,7 +31,7 @@ export default {
   justify-content: flex-end;
   width: 100%;
   overflow: hidden;
-  padding: 8px 0;
+  padding: space(1) 0;
 }
 
 .back-btn__link {
@@ -41,7 +41,7 @@ export default {
 }
 
 .back-btn__icon {
-  margin-right: 8px;
+  margin-right: space(1);
   opacity: 0;
   animation: iconFade 0.4s ease-out 0.4s forwards;
 }
@@ -67,6 +67,24 @@ export default {
   }
   to {
     transform: translate3D(0, 0, 0) rotate(180deg);
+  }
+}
+
+//TABLET
+
+@include tablet {
+  .back-btn__icon {
+    height: space(2.5);
+    margin-right: space(0.5);
+  }
+  .back-btn__label span {
+    font-size: 0.7rem;
+  }
+}
+@include mobile {
+  .back-btn__icon {
+    height: space(1.5);
+    margin-right: space(0);
   }
 }
 </style>

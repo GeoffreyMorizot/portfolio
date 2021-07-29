@@ -1,5 +1,5 @@
 <template>
-  <div class="specs">
+  <div>
     <!-- DOMAIN -->
     <div v-if="domain !== null" class="spec">
       <span class="spec__name">domain:</span>
@@ -65,29 +65,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-:host {
-  width: 100%;
-  height: fit-content;
-}
 .spec {
   display: flex;
   width: 100%;
-  row-gap: 8px;
+  row-gap: space(1);
   font-family: var(--secondary-ff);
   font-size: 0.75rem;
   text-transform: uppercase;
+  margin-bottom: 16px;
 }
 .spec__name {
   display: block;
-  width: calc(100% / 3);
-  padding-right: 24px;
+  min-width: calc(100% / 3);
+  padding-right: space(4);
   color: var(--clr-cheese);
 }
 .spec__value {
   display: flex;
   flex-direction: column;
-  row-gap: 4px;
+  row-gap: space(0.5);
   width: calc((100% / 3) * 2);
   color: var(--clr-klein-blue);
+}
+
+//MOBILE
+@include tablet {
+  .spec {
+    row-gap: space(0.75);
+  }
+
+  .spec__value {
+    flex-direction: row;
+
+    width: calc((100% / 4) * 3);
+
+    & li:not(:first-child)::before {
+      content: '-';
+      margin-left: space(0.5);
+    }
+  }
+}
+
+@include mobile {
+  .spec {
+    flex-direction: column;
+  }
+  .spec__value {
+    flex-direction: column;
+    li::before {
+      display: none;
+    }
+  }
 }
 </style>

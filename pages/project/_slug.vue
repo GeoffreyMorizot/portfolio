@@ -24,7 +24,7 @@
             alt=""
           />
           <div class="content__detail">
-            <span class="content__title-line"></span>
+            <div class="content__title-line"></div>
             <h1 class="content__title title-3">{{ project.title }}</h1>
             <div class="specs">
               <ProjectSpec
@@ -104,7 +104,7 @@ export default {
 .back {
   display: flex;
   align-items: center;
-  min-height: 160px;
+  min-height: space(20);
   font-family: var(--secondary-ff);
   color: var(--clr-cheese);
 }
@@ -139,7 +139,7 @@ export default {
 .content__title {
   grid-column: 8 / span 3;
   position: relative;
-  margin-bottom: 88px;
+  margin-bottom: space(11);
 }
 .content__link {
   grid-column: 8 / span 3;
@@ -149,7 +149,7 @@ export default {
   grid-column: 8 / span 3;
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  row-gap: space(2);
 }
 
 .project__description {
@@ -162,5 +162,69 @@ export default {
   display: flex;
   flex-direction: column;
   row-gap: 80px;
+}
+
+// TABLET
+
+@include tablet {
+  .back {
+    min-height: space(10);
+  }
+  .content__header {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .content__top-img {
+    width: 100%;
+  }
+
+  .content__detail {
+    position: relative;
+    margin-bottom: space(8);
+  }
+  .content__detail .content__title-line {
+    grid-column: 1 / span 2;
+    width: 13vw;
+    height: 6px;
+  }
+  .content__detail .content__title {
+    grid-column: 3 / span 9;
+    margin-bottom: 14vh;
+    font-size: 4rem;
+  }
+  .content__detail .specs {
+    grid-column: 3 / span 8;
+  }
+  .specs {
+    row-gap: space(2);
+  }
+  .project__description {
+    grid-column: 2 / span 4;
+  }
+}
+
+// MOBILE
+
+@include mobile {
+  .project__description {
+    grid-column: 1 / span 4;
+    margin: space(8) space(2);
+  }
+  .project__images {
+    grid-column: 1 / span 4;
+  }
+  .content__detail .content__title-line {
+    width: 21.75vw;
+    height: 3px;
+  }
+  .content__detail .content__title {
+    grid-column: 4 / span 2;
+    margin-bottom: space(6);
+    font-size: 2rem;
+  }
+
+  .content__detail .specs {
+    grid-column: 2 / span 10;
+  }
 }
 </style>

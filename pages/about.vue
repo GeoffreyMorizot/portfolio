@@ -1,8 +1,9 @@
 <template>
   <div class="container-about">
-    <div v-if="isLoading" class="about-loader">
-      <span>LOADING</span>
+    <div v-show="isLoading" class="about-loader">
+      <Loading />
     </div>
+
     <div v-if="!isLoading">
       <div>
         <header class="about-header">
@@ -23,9 +24,9 @@
               width="1440"
               height="1977"
               loading="lazy"
-              baseUrl=""
+              base-url=""
               :source="about.imageProfil.url"
-              :srcSet="about.imageProfil.formats"
+              :src-set="about.imageProfil.formats"
               sizes="41.66vw"
             />
           </div>
@@ -77,12 +78,14 @@
 import about from '~/apollo/queries/about'
 
 import Gimage from '~/components/common/Gimage'
+import Loading from '~/components/common/Loading.vue'
 import Experience from '~/components/about/Experience.vue'
 import Skill from '~/components/about/Skill.vue'
 import Education from '~/components/about/Education.vue'
 
 export default {
   components: {
+    Loading,
     Gimage,
     Experience,
     Skill,
@@ -205,47 +208,27 @@ export default {
 
 <style lang="scss">
 .about-loader {
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   height: 100vh;
+  width: 100%;
+  color: var(--clr-klein-blue);
+  font-family: var(--ff);
+  font-size: 1rem;
 }
 
 .container-about {
   flex-grow: 1;
-
-  @include tablet {
-    .about-header {
-      padding: 80px 0 0 0;
-    }
-    .about-header__title {
-      margin-bottom: 40px;
-    }
-    .skills-educations {
-      flex-direction: column;
-      row-gap: 64px;
-    }
-
-    .skills,
-    .educations {
-      width: 100%;
-    }
-    .skills___title,
-    .educations___title {
-      margin: 0 0 56px 0;
-    }
-  }
-  @include mobile {
-    .experiences {
-      grid-column: 2 / span 2;
-    }
-    .skills-educations {
-      grid-column: 2 / span 2;
-    }
-  }
 }
 .about-header {
   @include gridX2;
-  padding: 160px 0 0 0;
+  padding: space(20) 0 0 0;
   min-height: 57.2vw;
 }
 .about-header__text {
@@ -253,7 +236,7 @@ export default {
   grid-column: 3 / span 4;
 }
 .about-header__title {
-  margin-bottom: 96px;
+  margin-bottom: space(12);
   position: relative;
 }
 
@@ -273,32 +256,32 @@ export default {
 
 .experiences {
   grid-column: 2 / span 4;
-  margin: 120px 0 0 0;
+  margin: space(15) 0 0 0;
 }
 .experiences__title {
   grid-column: 2 / span 2;
-  margin: 0 0 88px 0;
+  margin: 0 0 space(11) 0;
 }
 
 .skills-educations {
   grid-column: 2 / span 4;
   display: flex;
-  margin: 120px 0 0 0;
+  margin: space(15) 0 space(30) 0;
 }
 
 .skills {
   width: 50%;
-  padding: 0 48px 0 0;
+  padding: 0 space(6) 0 0;
 }
 
 .skills___title,
 .educations___title {
-  margin: 0 0 88px 0;
+  margin: 0 0 space(11) 0;
 }
 
 .skills__wrapper {
   display: grid;
-  row-gap: 24px;
+  row-gap: space(3);
 }
 
 .educations {
@@ -307,6 +290,41 @@ export default {
 
 .educations__wrapper {
   display: grid;
-  row-gap: 24px;
+  row-gap: space(3);
+}
+
+//TABLET
+
+@include tablet {
+  .about-header {
+    padding: space(10) 0 0 0;
+  }
+  .about-header__title {
+    margin-bottom: 40px;
+  }
+  .skills-educations {
+    flex-direction: column;
+    row-gap: space(8);
+  }
+
+  .skills,
+  .educations {
+    width: 100%;
+  }
+  .skills___title,
+  .educations___title {
+    margin: 0 0 space(7) 0;
+  }
+}
+
+//MOBILE
+
+@include mobile {
+  .experiences {
+    grid-column: 2 / span 2;
+  }
+  .skills-educations {
+    grid-column: 2 / span 2;
+  }
 }
 </style>

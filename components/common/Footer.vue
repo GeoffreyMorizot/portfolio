@@ -1,42 +1,32 @@
 <template>
   <footer class="footer">
     <div class="footer__wapper">
-      <p class="footer__legals">{{ info.legals }}</p>
-      <a class="footer__contact" :href="`mailto:${info.contactEmail}`">{{info.contactEmail}}</a>
+      <small class="footer__legals">{{ info.legals }}</small>
+      <small class="footer__contact">
+        <a :href="`mailto:${info.contactEmail}`">{{ info.contactEmail }}</a>
+      </small>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-    props: {
-        info: Object,
-    },
-
+  props: {
+    info: Object,
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .footer {
-  
   flex-grow: 0;
-  height: 64px;;
-  margin-top: 128px;
+  height: space(8);
   background: white;
   border-top: 1px solid var(--clr-cheese-light);
-  
+
   font-family: var(--secondary-ff);
   font-size: 0.85rem;
   color: var(--clr-cheese);
-
-  @include mobile {
-    .footer__legals {
-      grid-column: 1 / span 1;
-    }
-    .footer__contact {
-      grid-column: 4 / span 1;
-    }
-  }
 }
 
 .footer__wapper {
@@ -53,7 +43,25 @@ export default {
 }
 
 .footer__contact {
-  grid-column: 10  / span 2;
+  grid-column: 10 / span 2;
   text-align: center;
+}
+//MOBILE
+
+@include mobile {
+  .footer {
+    height: space(5);
+    font-size: 0.6rem;
+  }
+  .footer__legals {
+    grid-column: 1 / span 4;
+    justify-self: start;
+    margin: 0 space(2);
+  }
+  .footer__contact {
+    grid-column: 5 / span 6;
+    justify-self: end;
+    margin: 0 space(2);
+  }
 }
 </style>

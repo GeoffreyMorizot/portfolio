@@ -1,44 +1,80 @@
 <template>
-  <div class="container-test" v-if="!this.$apollo.queries.about.loading">
-    <Experience
-      v-for="experience in experienceData"
-      :key="experience.id"
-      :experience="experience"
+  <div class="container-test" v-if="!this.$apollo.queries.home.loading">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <Project2
+      v-for="(project, index) in projects"
+      :key="project.id"
+      :project="project"
+      :index="index"
     />
-    <OpenIcon duration="0.1s" color="#0025bb" />
   </div>
 </template>
 
 <script>
-import about from '~/apollo/queries/about.gql'
-
-import Experience from '~/components/about/Experience'
-import OpenIcon from '~/components/about/OpenIcon'
+import Project2 from '~/components/Project2.vue'
+import home from '~/apollo/queries/home.gql'
 
 export default {
-  components: {
-    Experience,
-    OpenIcon,
+  components: { Project2 },
+  data() {
+    return {
+      home: null,
+    }
   },
-
   computed: {
-    experienceData() {
-      return this.about.experiencesList
+    projects() {
+      return this.home.projects
     },
   },
   apollo: {
-    about: {
+    home: {
       prefetch: true,
-      query: about,
+      query: home,
     },
   },
 }
 </script>
 
-
 <style lang="scss" scoped>
 .container-test {
   flex-grow: 1;
-  width: calc((100vw / 6) * 4);
+  width: 100%;
 }
 </style>

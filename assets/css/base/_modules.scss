@@ -3,7 +3,7 @@
     color: var(--clr-klein-blue);
 }
 
-//title
+//TITLE
 
 %title{
     font-family: var(--ff);
@@ -43,9 +43,32 @@
 }
 .title-6{
     @extend %title;
+    @extend %title-500;
     word-spacing: 0.014rem;
     font-size: clamp(0.9rem, 1vw, 1.3rem);
+    text-transform: uppercase;
+    color: var(--clr-cheese)
 }
+
+// title tablet
+@include tablet {
+    .title-1 {
+        font-size: 3.5rem;
+    }
+    .title-4{
+        font-size: 1.5rem;
+      }
+  }
+
+// title mobile
+@include mobile {
+    .title-1 {
+        font-size: 3rem;
+    }
+    .title-4{
+      font-size: 1.2rem;
+    }
+  }
 
 //PARAGRAPH
 
@@ -55,9 +78,15 @@
 }
 .paragraph-big{
     @extend %paragraph;
+    position: relative;
     min-height: 0vw; // Fix clamp() bug on safari
     font-size: clamp(1rem, 1.65vw, 1.2rem);
-    line-height: 1.5
+    line-height: 1.5;
+    strong{
+        font-weight: 500;
+        color: rgb(0 204 153);
+    }
+
 }
 .paragraph-small{
     @extend %paragraph;
@@ -67,19 +96,21 @@
 }
 
 
-// HYPHEN
+
 
 .hyphen{
+    position: relative;
     &:before {
         content: '';
         position: absolute;
-        top: 22px;
-        left: 0;
-        height: 3px;
+        top: 1.4em;
+        left: 0px;
+        height: 0.15em;
         width: 20px;
         background: var(--clr-cheese);
       }
 }
+
 .overlay {
     transform: translate3d(-100%, 0, 0);
     &::before {
@@ -90,6 +121,7 @@
       bottom: 0;
       left: 0;
       background-color: currentColor;
+      z-index: 100;
     }
   }
 

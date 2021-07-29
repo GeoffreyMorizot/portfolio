@@ -26,10 +26,15 @@ $screen-mobile : 550px;
     }
 }
 
+
 @mixin gridX2 {
   display: grid;
     grid-template-columns: repeat(12, 1fr);
     @include mobile {
       grid-template-columns: repeat(8, 1fr);
     }
+}
+
+@function space($i) {
+  @return calc(#{$i} * var(--space));
 }

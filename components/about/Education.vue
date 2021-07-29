@@ -60,9 +60,4 @@ export default {
   flex-grow: 1;
   margin: 0 24px;
 }
-
-.education__top {
-  color: var(--clr-cheese);
-  text-transform: uppercase;
-}
 </style>
