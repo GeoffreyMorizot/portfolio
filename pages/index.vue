@@ -116,7 +116,7 @@ export default {
     }
   }
   .contact-container {
-    padding: 0 calc(100vw / 4);
+    padding: 0 calc(100vw / 8);
   }
   .contact__email {
     margin-top: space(3);

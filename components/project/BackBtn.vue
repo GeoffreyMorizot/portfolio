@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-back-btn">
-    <a class="back-btn__link" @click="pageBack($router)">
+  <div tabindex="1" class="nav-back-btn">
+    <a class="back-btn__link" @click.prevent="pageBack($router)">
       <img
         class="back-btn__icon"
         width="42"

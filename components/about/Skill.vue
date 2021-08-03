@@ -57,10 +57,11 @@ export default {
 .skill__subskill {
   text-transform: capitalize;
   display: flex;
-  margin-top: 8px;
+  margin-top: space(1);
   font-family: var(--secondary-ff);
   font-weight: 400;
   color: var(--clr-klein-blue);
+  width: 100%;
 
   & > li:not(:first-child)::before {
     content: '.';

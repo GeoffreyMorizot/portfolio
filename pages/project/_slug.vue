@@ -107,6 +107,7 @@ export default {
   min-height: space(20);
   font-family: var(--secondary-ff);
   color: var(--clr-cheese);
+  z-index: 100;
 }
 // TOP CONTENT
 .project__content {
@@ -161,7 +162,12 @@ export default {
   grid-column: 2 / span 4;
   display: flex;
   flex-direction: column;
-  row-gap: 80px;
+
+  margin-bottom: space(40);
+}
+
+.project__images > img:not(:last-child) {
+  margin-bottom: space(10);
 }
 
 // TABLET
@@ -169,10 +175,15 @@ export default {
 @include tablet {
   .back {
     min-height: space(10);
+    position: fixed;
+    bottom: 0;
+    right: 10px;
   }
   .content__header {
     display: flex;
     flex-direction: column-reverse;
+    margin-top: space(4);
+    min-height: 100vh;
   }
   .content__top-img {
     width: 100%;
@@ -200,6 +211,10 @@ export default {
   }
   .project__description {
     grid-column: 2 / span 4;
+    text-align: justify;
+  }
+  .project__images {
+    margin-bottom: space(20);
   }
 }
 
@@ -213,18 +228,21 @@ export default {
   .project__images {
     grid-column: 1 / span 4;
   }
+  .content__detail {
+    @include gridX2;
+  }
   .content__detail .content__title-line {
     width: 21.75vw;
     height: 3px;
   }
   .content__detail .content__title {
-    grid-column: 4 / span 2;
+    grid-column: 3 / span 5;
     margin-bottom: space(6);
     font-size: 2rem;
   }
 
   .content__detail .specs {
-    grid-column: 2 / span 10;
+    grid-column: 2 / span 6;
   }
 }
 </style>

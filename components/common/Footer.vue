@@ -27,6 +27,8 @@ export default {
   font-family: var(--secondary-ff);
   font-size: 0.85rem;
   color: var(--clr-cheese);
+
+  z-index: 1000;
 }
 
 .footer__wapper {
@@ -37,15 +39,26 @@ export default {
   height: 100%;
   margin: 0 auto;
 }
+
 .footer__legals {
-  grid-column: 2 / span 2;
-  text-align: center;
+  grid-column: 2 / span 4;
+  text-align: start;
 }
 
 .footer__contact {
-  grid-column: 10 / span 2;
-  text-align: center;
+  grid-column: 8 / span 4;
+  text-align: right;
 }
+//TABLET
+@include tablet {
+  .footer__legals {
+    grid-column: 2 / span 4;
+  }
+  .footer__contact {
+    grid-column: 8 / span 4;
+  }
+}
+
 //MOBILE
 
 @include mobile {

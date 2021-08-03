@@ -60,4 +60,14 @@ export default {
   flex-grow: 1;
   margin: 0 24px;
 }
+//MOBILE
+@include mobile {
+  .education__bottom {
+    flex-direction: column;
+    row-gap: space(1);
+  }
+  .education-bottom__line {
+    display: none;
+  }
+}
 </style>

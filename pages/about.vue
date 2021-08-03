@@ -251,11 +251,11 @@ export default {
 }
 
 .about-content {
-  @include grid;
+  @include gridX2;
 }
 
 .experiences {
-  grid-column: 2 / span 4;
+  grid-column: 3 / span 8;
   margin: space(15) 0 0 0;
 }
 .experiences__title {
@@ -264,7 +264,7 @@ export default {
 }
 
 .skills-educations {
-  grid-column: 2 / span 4;
+  grid-column: 3 / span 8;
   display: flex;
   margin: space(15) 0 space(30) 0;
 }
@@ -320,11 +320,15 @@ export default {
 //MOBILE
 
 @include mobile {
-  .experiences {
-    grid-column: 2 / span 2;
-  }
+  .experiences,
   .skills-educations {
-    grid-column: 2 / span 2;
+    grid-column: 2 / span 6;
+  }
+  .about-header__text {
+    grid-column: 2 / span 6;
+  }
+  .about-header__img-wrapper {
+    display: none;
   }
 }
 </style>
