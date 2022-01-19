@@ -18,9 +18,9 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'PortfolioFront',
+    title: 'Geoffrey Morizot | Développeur web',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'fr',
     },
     meta: [
       {
@@ -33,7 +33,62 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Portfolio de Geoffrey Morizot',
+        content: 'Geoffrey Morizot développeur web à Bordeaux.',
+      },
+      {
+        hid: 'og:type',
+        name: 'og:type',
+        content: 'website',
+      },
+      {
+        hid: 'og:url',
+        name: 'og:url',
+        content: 'https://www.geoffreymorizot.com/',
+      },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: 'Geoffrey Morizot | Développeur web',
+      },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content: 'Geoffrey Morizot développeur web à Bordeaux.',
+      },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        content: '/logo.png',
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        hid: 'twitter:type',
+        name: 'twitter:type',
+        content: 'website',
+      },
+      {
+        hid: 'twitter:url',
+        name: 'twitter:url',
+        content: 'https://www.geoffreymorizot.com/',
+      },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: 'Geoffrey Morizot | Développeur web',
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content: 'Geoffrey Morizot développeur web à Bordeaux.',
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: '/logo.png',
       },
     ],
     link: [
