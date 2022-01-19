@@ -1,129 +1,118 @@
 .nav-link {
-    font-family: var(--ff);
-    color: var(--clr-klein-blue);
+  font-family: var(--ff);
+  color: var(--clr-klein-blue);
 }
 
 //TITLE
 
-%title{
-    font-family: var(--ff);
-    min-height: 0vw; // Fix clamp() bug on safari
+%title {
+  font-family: var(--ff);
+  min-height: 0vw; // Fix clamp() bug on safari
 }
-%title-500{
-    font-weight: 500;
-    font-style: normal;
-    line-height: auto;
+%title-500 {
+  font-weight: 500;
+  font-style: normal;
+  line-height: auto;
 }
-.title-1{
-    @extend %title;
-    @extend %title-500;
-    font-size: clamp(1.7rem, 8vw, 13rem);
-    color: var(--clr-cheese)
+.title-1 {
+  @extend %title;
+  @extend %title-500;
+  font-size: clamp(1.7rem, 8vw, 13rem);
+  color: var(--clr-cheese);
 }
-.title-2{
-    @extend %title;
-    @extend %title-500;
-    font-size: clamp(1.2rem, 6vw, 7.2rem);
-    letter-spacing: -2.6%;
-    color: var(--clr-cheese)
+.title-2 {
+  @extend %title;
+  @extend %title-500;
+  font-size: clamp(1.2rem, 6vw, 7.2rem);
+  letter-spacing: -2.6%;
+  color: var(--clr-cheese);
 }
-.title-3{
-    @extend %title;
-    @extend %title-500;
-    font-size: clamp(1.5rem, 4.4vw, 2.8rem);
-    color: var(--clr-klein-blue)
+.title-3 {
+  @extend %title;
+  @extend %title-500;
+  font-size: clamp(1.5rem, 4.4vw, 2.8rem);
+  color: var(--clr-klein-blue);
 }
-.title-4{
-    @extend %title;
-    font-size: clamp(1.2rem, 1.8vw, 2.5rem);
+.title-4 {
+  @extend %title;
+  font-size: clamp(1.2rem, 1.8vw, 2.5rem);
 }
-.title-5{
-    @extend %title;
-    font-size: clamp(1rem, 1.6vw, 2.5rem);
+.title-5 {
+  @extend %title;
+  font-size: clamp(1rem, 1.6vw, 2.5rem);
 }
-.title-6{
-    @extend %title;
-    @extend %title-500;
-    word-spacing: 0.014rem;
-    font-size: clamp(0.9rem, 1vw, 1.3rem);
-    text-transform: uppercase;
-    color: var(--clr-cheese)
+.title-6 {
+  @extend %title;
+  @extend %title-500;
+  word-spacing: 0.014rem;
+  font-size: clamp(0.9rem, 1vw, 1.3rem);
+  text-transform: uppercase;
+  color: var(--clr-cheese);
 }
 
 // title tablet
 @include tablet {
-    .title-1 {
-        font-size: 3.5rem;
-    }
-    .title-4{
-        font-size: 1.5rem;
-      }
+  .title-1 {
+    font-size: 3.5rem;
   }
+  .title-4 {
+    font-size: 1.5rem;
+  }
+}
 
 // title mobile
 @include mobile {
-    .title-1 {
-        font-size: 3rem;
-    }
-    .title-4{
-      font-size: 1.2rem;
-    }
+  .title-1 {
+    font-size: 3rem;
   }
+  .title-4 {
+    font-size: 1.2rem;
+  }
+}
 
 //PARAGRAPH
 
-%paragraph{
-    font-family: var(--secondary-ff);
-    color: var(--clr-klein-blue);
+%paragraph {
+  font-family: var(--secondary-ff);
+  color: var(--clr-klein-blue);
 }
-.paragraph-big{
-    @extend %paragraph;
-    position: relative;
-    min-height: 0vw; // Fix clamp() bug on safari
-    font-size: clamp(1rem, 1.65vw, 1.2rem);
-    line-height: 1.5;
-    strong{
-        box-shadow: inset 0 -4px 0 var(--clr-cheese);
-    }
-
+.paragraph-big {
+  @extend %paragraph;
+  position: relative;
+  min-height: 0vw; // Fix clamp() bug on safari
+  font-size: clamp(1rem, 1.65vw, 1.2rem);
+  line-height: 1.5;
 }
-.paragraph-small{
-    @extend %paragraph;
-    min-height: 0vw; // Fix clamp() bug on safari
-    font-size: clamp(0.9rem, 1.10vw, 1.2rem);
-    line-height: 1.6 
+.paragraph-small {
+  @extend %paragraph;
+  min-height: 0vw; // Fix clamp() bug on safari
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  line-height: 1.6;
 }
 
-
-
-
-.hyphen{
-    position: relative;
-    &:before {
-        content: '';
-        position: absolute;
-        top: 1.4em;
-        left: 0px;
-        height: 0.15em;
-        width: 20px;
-        background: var(--clr-cheese);
-      }
+.hyphen {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 1.4em;
+    left: 0px;
+    height: 0.15em;
+    width: 20px;
+    background: var(--clr-cheese);
+  }
 }
 
 .overlay {
-    transform: translate3d(-100%, 0, 0);
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: currentColor;
-      z-index: 100;
-    }
+  transform: translate3d(-100%, 0, 0);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    z-index: 100;
   }
-
-
-
-
+}

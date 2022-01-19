@@ -57,6 +57,9 @@
         />
       </div>
     </div>
+    <div class="back back--bottom">
+      <BackBtn />
+    </div>
   </div>
 </template>
 
@@ -108,6 +111,13 @@ export default {
   font-family: var(--secondary-ff);
   color: var(--clr-cheese);
   z-index: 100;
+}
+
+.back--bottom {
+  @include grid;
+  & > div {
+    grid-column: 5;
+  }
 }
 // TOP CONTENT
 .project__content {
@@ -163,7 +173,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  margin-bottom: space(40);
+  margin-bottom: space(20);
 }
 
 .project__images > img:not(:last-child) {
@@ -178,6 +188,9 @@ export default {
     position: fixed;
     bottom: 0;
     right: 10px;
+  }
+  .back--bottom {
+    display: none;
   }
   .content__header {
     display: flex;
