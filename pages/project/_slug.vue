@@ -1,10 +1,7 @@
 <template>
   <div class="project">
-    <div v-if="this.$apollo.queries.project.loading">loading</div>
-    <div
-      v-if="!this.$apollo.queries.project.loading"
-      class="project__container"
-    >
+    <div v-if="isLoading"><Loading /></div>
+    <div v-if="!isLoading" class="project__container">
       <!-- TOP NAV BACK BTN -->
       <header class="back">
         <BackBtn />
@@ -57,13 +54,14 @@
         />
       </div>
     </div>
-    <div class="back back--bottom">
+    <div v-if="!isLoading" class="back back--bottom">
       <BackBtn />
     </div>
   </div>
 </template>
 
 <script>
+import Loading from '~/components/common/Loading.vue'
 import ProjectSpec from '~/components/ProjectSpec.vue'
 import BackBtn from '~/components/project/BackBtn.vue'
 import project from '~/apollo/queries/project.gql'
@@ -72,6 +70,7 @@ export default {
   components: {
     ProjectSpec,
     BackBtn,
+    Loading,
   },
   layout: 'projectLayout',
   data() {
@@ -79,6 +78,11 @@ export default {
       project: null,
       baseURL: this.$config.http.imageURL,
     }
+  },
+  computed: {
+    isLoading() {
+      return this.$apollo.queries.project.loading
+    },
   },
   apollo: {
     project: {

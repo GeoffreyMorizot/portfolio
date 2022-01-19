@@ -1,6 +1,6 @@
 <template>
   <div class="container-about">
-    <div v-show="isLoading" class="about-loader">
+    <div v-if="isLoading">
       <Loading />
     </div>
 
@@ -13,7 +13,7 @@
             </h1>
             <div
               ref="paragraph"
-              class="paragraph-big"
+              class="about__desc paragraph-big"
               v-html="$md.render(about.headerText)"
             ></div>
           </div>
@@ -207,22 +207,6 @@ export default {
 </script>
 
 <style lang="scss">
-.about-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  color: var(--clr-klein-blue);
-  font-family: var(--ff);
-  font-size: 1rem;
-}
-
 .container-about {
   flex-grow: 1;
 }
@@ -238,6 +222,16 @@ export default {
 .about-header__title {
   margin-bottom: space(12);
   position: relative;
+}
+
+.about__desc {
+  p {
+    br {
+      content: '';
+      display: block;
+      margin: 16px 0;
+    }
+  }
 }
 
 .about-header__img-wrapper {
