@@ -3,7 +3,7 @@
     <BgGrid />
     <header class="header">
       <nav class="nav">
-        <nuxt-link class="nav__link" to="/">
+        <nuxt-link aria-label="Geoffrey Morizot" class="nav__link" to="/">
           <img
             width="49"
             height="37"
@@ -41,6 +41,9 @@ export default {
       query: global,
     },
   },
+  mounted() {
+    this.startAnimation()
+  },
   methods: {
     startAnimation() {
       const tl = this.$gsap.timeline()
@@ -52,9 +55,6 @@ export default {
         delay: 0.1,
       })
     },
-  },
-  mounted() {
-    this.startAnimation()
   },
 }
 </script>
