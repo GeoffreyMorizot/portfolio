@@ -1,5 +1,5 @@
 <template>
-  <div class="hero">
+  <div class="hero" :class="{ isload: !isLoad }">
     <div class="hero__wrapper">
       <h1 ref="title" class="hero__title title-1">
         {{ home.title }}
@@ -29,12 +29,16 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      isLoad: true, // Évite d'avoir le clipping le temps que la page soit hydratée
+    }
   },
-
   mounted() {
-    this.spanify(this.$refs.title)
-    this.animation()
+    this.$nextTick(function () {
+      this.isLoad = false
+      this.spanify(this.$refs.title)
+      this.animation()
+    })
   },
   methods: {
     spanify(el) {
@@ -79,7 +83,7 @@ export default {
       tl.to(
         paragraph,
         { duration: 1, y: '0%', opacity: 1, ease: 'power4.out' },
-        '-=0.2'
+        '-=0.4'
       )
     },
   },
@@ -90,6 +94,11 @@ export default {
 .hero {
   width: 100%;
   min-height: 150vh;
+  opacity: 0;
+
+  &.isload {
+    opacity: 1;
+  }
 
   .hero__wrapper {
     @include grid;
