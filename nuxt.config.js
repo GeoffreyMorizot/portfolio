@@ -88,7 +88,7 @@ export default {
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: '/logo.png',
+        content: '/og-1200-628.jpg',
       },
     ],
     link: [
