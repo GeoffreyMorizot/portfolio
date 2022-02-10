@@ -7,7 +7,7 @@
     <div class="project__img2">
       <div ref="overlay" class="reveal-overlay"></div>
       <div ref="image" class="img__wrapper">
-        <nuxt-link :to="`/project/${project.slug}`">
+        <nuxt-link :aria-label="project.title" :to="`/project/${project.slug}`">
           <Gimage
             ref="image"
             class="img"

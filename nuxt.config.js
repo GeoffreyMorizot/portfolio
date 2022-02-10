@@ -58,7 +58,7 @@ export default {
       {
         hid: 'og:image',
         name: 'og:image',
-        content: '/logo.png',
+        content: '/og-1200-628.jpg',
       },
       {
         hid: 'twitter:card',
