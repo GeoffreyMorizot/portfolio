@@ -30,6 +30,23 @@
               sizes="41.66vw"
             />
           </div>
+          <div class="about__actions">
+            <a href="CV-G-MORIZOT.pdf" target="_blank" rel="noopener noreferrer"
+              >cv</a
+            >
+            <a
+              href="https://www.linkedin.com/in/geoffrey-morizot-developer"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Linkedin</a
+            >
+            <a
+              href="https://github.com/GeoffreyMorizot"
+              target="_blank"
+              rel="noopener noreferrer"
+              >github</a
+            >
+          </div>
         </header>
         <main class="about-content">
           <section class="experiences">
@@ -220,7 +237,7 @@ export default {
   grid-column: 3 / span 4;
 }
 .about-header__title {
-  margin-bottom: space(12);
+  margin-bottom: space(10);
   position: relative;
 }
 
@@ -248,9 +265,59 @@ export default {
   @include gridX2;
 }
 
+.about__actions {
+  display: flex;
+  grid-column: 3 / span 4;
+  height: fit-content;
+  margin-top: space(7);
+
+  a {
+    position: relative;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    text-align: center;
+    height: fit-content;
+    background: white;
+    border: 1px solid var(--clr-cheese);
+    color: var(--clr-cheese);
+    font-family: var(--ff);
+    font-weight: 700;
+    padding: 0.75rem 0;
+    transition: flex-grow 0.2s ease-out;
+    text-transform: uppercase;
+    &:not(:last-child) {
+      border-right: none;
+    }
+    &:hover {
+      flex-grow: 2;
+      transition: flex-grow 0.3s ease-out;
+      color: white;
+      background: transparent;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      transform: scaleX(0);
+      transition: all 0.3s ease-in;
+      background: var(--clr-cheese);
+      transform-origin: left;
+      z-index: -1;
+    }
+    &:hover::after {
+      transform: scaleX(1);
+      transition: all 0.3s ease-in;
+    }
+  }
+}
+
 .experiences {
   grid-column: 3 / span 8;
-  margin: space(15) 0 0 0;
+  margin: space(19) 0 0 0;
 }
 .experiences__title {
   grid-column: 2 / span 2;
@@ -323,6 +390,12 @@ export default {
   }
   .about-header__img-wrapper {
     display: none;
+  }
+  .about__actions {
+    display: flex;
+    grid-column: 2 / span 6;
+    height: fit-content;
+    margin-top: space(7);
   }
 }
 </style>
